@@ -7,6 +7,7 @@ import java.awt.Insets;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.BorderFactory;
@@ -218,10 +219,10 @@ public class DrawFrame extends JFrame
                     // Prompt the user for a color (use JColorChooser for this.)
                     // TODO
                 	JColorChooser userColor = new JColorChooser(color);
-                    
+      
                     // If a valid color was chosen, assign it to color (the variable).
                     // TODO
-                    
+                    color = userColor.getColor();
                 	
                     // Set the background of the button (colorChooser) to match the color chosen
                     // TODO
@@ -230,7 +231,12 @@ public class DrawFrame extends JFrame
                     // If we're in edit mode, set the color of the chosen shape
                     // to that of the chosen color (You'll need to look at the code drawPanel provides)
                     // TODO
-                    
+                    if (editFlag) {
+                    	ArrayList<Shape> shapes = drawPanel.getShapeList();
+                    	int index = drawPanel.getShapeIndex();
+                    	
+                    	shapes.get(index).setColor(color);
+                    }
                     
                     // Repaint the frame and panel. A bit more info is on page 5 of:
                     // https://web.stanford.edu/class/archive/cs/cs108/cs108.1092/handouts/27PaintRepaint.pdf
