@@ -241,6 +241,8 @@ public class DrawFrame extends JFrame
                     // Repaint the frame and panel. A bit more info is on page 5 of:
                     // https://web.stanford.edu/class/archive/cs/cs108/cs108.1092/handouts/27PaintRepaint.pdf
                     // TODO
+                    controlPanel.repaint();
+                    drawPanel.repaint();
                 }
             });
 
@@ -381,18 +383,22 @@ public class DrawFrame extends JFrame
                     if (randShapeChoice == 0) // Diamond
                     {
                         // TODO: create a diamond with the random values and add it to the drawpanel.
+                    	drawPanel.add(diamond(randVal1,randVal2));
                     }
                     else if (randShapeChoice == 1) // Rectangle
                     {
                         // TODO: create a rectangle with the random values and add it to the drawpanel.
+                    	drawPanel.add();
                     }
                     else if (randShapeChoice == 2) // Oval
                     {
                         // TODO: create a oval with the random values and add it to the drawpanel.
+                    	drawPanel.add();
                     }
                     else // Triangle
                     {
                         // TODO: create a triangle with the random values and add it to the drawpanel.
+                    	drawPanel.add();
                     }
                     // repaint panel
                     drawPanel.repaint();
@@ -464,6 +470,10 @@ public class DrawFrame extends JFrame
     public boolean isOval()
     {
         // TODO: implement this => check info on the correct graphical component.
+    	if () {
+    		return true;
+    	}
+    	return false;
     }
 
     /**
@@ -474,6 +484,7 @@ public class DrawFrame extends JFrame
     public boolean isRectangle()
     {
         // TODO: implement this => check info on the correct graphical component.
+    	if ()
     }
 
     /**
