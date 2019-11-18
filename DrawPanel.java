@@ -61,8 +61,8 @@ public class DrawPanel extends JPanel
             // Remember this starting coordinate (look at documentation for mouse events)
             // You can store these in x0 and y0
             // TODO
-        	int x0 = e.getX();
-        	int y0 = e.getY();
+        	x0 = e.getX();
+        	y0 = e.getY();
         	
             // are we in edit mode?
             if (frame.isEditing())
@@ -74,7 +74,7 @@ public class DrawPanel extends JPanel
                 // find which shape was clicked
                 // loop through shapes in stack fashion, LIFO
                 // TODO
-                for (int i = shapeList.size(); i >= 0; --i)
+                for (int i = shapeList.size() - 1; i >= 0; --i)
                 {
                 	tempShape = shapeList.get(i);
                 	if (tempShape.contains(mouseClick))
@@ -86,11 +86,10 @@ public class DrawPanel extends JPanel
                         // TODO: find if the shape is filled
                         // TODO: set fillBox to match the status of the shape
                        if (tempShape.isFilled()) {
-                    	   Color tempColor = tempShape.getColor();
                     	   frame.controlPanel.fillBox.setEnabled(true);
                        }
                        else {
-                    	   
+                    	   frame.controlPanel.fillBox.setEnabled(false);
                        }
                         // TODO: get color of the shape
                         // TODO: set the color of the frame to match the shape's color
@@ -109,9 +108,10 @@ public class DrawPanel extends JPanel
             	
                 // find which shape was clicked
                 // loop through shapes in stack fashion, LIFO
-                for (int i = shapeList.size(); i >= 0; --i)
+                for (int i = shapeList.size() - 1; i >= 0; --i)
                 {
-                    if (tempShape.contains(mouseClick))
+                    tempShape = shapeList.get(i);
+                	if (tempShape.contains(mouseClick))
                     {
                         // If the shape contains the point, prompt the user for
                         // a confirmation to delete
@@ -122,8 +122,9 @@ public class DrawPanel extends JPanel
                                         JOptionPane.YES_NO_OPTION);
                         // TODO: Check answer, remove shape if yes 
                         // You may need to review JOptionPane documentation
-                        if (JOptionPane.getValue()) {
+                        if (ret == 0) {
                         	removeShape(shapeIndex);
+                        	
                         }
                         // TODO: break out of for loop
                         break;
@@ -152,7 +153,8 @@ public class DrawPanel extends JPanel
 
                 // Coordinates of the cursor (x0/y0 are already being used, what should you use?)
                 // TODO
-            	Point mouseRelease = new Point(x1, y1);
+            	x1 = e.getX();
+            	y1 = e.getY();
                 // Indicate that we are no longer drawing
                 // TODO
             	drawingFlag = false;
@@ -164,7 +166,10 @@ public class DrawPanel extends JPanel
             	Shape newShape = createShape();
                 // Add the shape to the panel list if the shape exists
                 // TODO
-                fdsafdsafaklj
+                if (newShape != null) {
+                	DrawPanel.this.addShape(newShape);
+                	
+                }
             	
                 //repaint
                 repaint();
@@ -187,7 +192,8 @@ public class DrawPanel extends JPanel
                 // Yes
                 // Note the current coordinates
                 // TODO
-            	Point point = new Point();
+            	x1 = e.getX();
+            	y1 = e.getY();
                 // Create a temporary shape (look at what variables we have)
                 // TODO
             	tempShape = createShape();
@@ -210,27 +216,34 @@ public class DrawPanel extends JPanel
             int width = xdist*2; // Width/height are twice the distance from ovals, rectangles, and diamonds.
             int height = ydist*2;
 
+            Point point = new Point(x0, y0);
             // Create a new object, depending on what is selected
             // TODO give them diamond, comments else
             if (frame.isOval())
             {
                 // TODO: create and return an Oval
-            	Shape newShape = new Shape();
-            	
+            	Shape newShape = new Oval(point, width, height, frame.getColor(), frame.controlPanel.ovalButton.isSelected());
+            	return newShape;
             }
             else if (frame.isRectangle())
             {
                 // TODO: create and return a Rectangle
+            	Shape newShape = new Rectangle(point, width, height, frame.getColor(), frame.controlPanel.rectangleButton.isSelected());
+            	return newShape;
                 
             }
             else if (frame.isTriangle())
             {
                 // TODO: create and return a Triangle
+            	Shape newShape = new RightTriangle(point, width, height, frame.getColor(), frame.controlPanel.triangleButton.isSelected());
+            	return newShape;
                 
             }
             else if (frame.isDiamond())
             {
                 // TODO: create and return diamond
+            	Shape newShape = new Diamond(point, width, height, frame.getColor(), frame.controlPanel.diamondButton.isSelected());
+            	return newShape;
                 
             }
             // Should not get here, but be safe
@@ -289,10 +302,12 @@ public class DrawPanel extends JPanel
         super.paintComponent(g);
 
         // TODO: Draw each shape on the list
-        
+        for (int i = 0; i < shapeList.size(); ++i) {
+        	shapeList.get(i).draw(g);
+        }
         // TODO: If there is a temporary shape, then draw it, too
         if (tempShape != null) {
-        	drawPanel.add(tempShape);
+        	tempShape.draw(g);
         }
         
     }

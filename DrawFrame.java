@@ -218,11 +218,11 @@ public class DrawFrame extends JFrame
                 {
                     // Prompt the user for a color (use JColorChooser for this.)
                     // TODO
-                	JColorChooser userColor = new JColorChooser(color);
+                	Color menu = JColorChooser.showDialog(controlPanel, "Choose color", color);
       
                     // If a valid color was chosen, assign it to color (the variable).
                     // TODO
-                    color = userColor.getColor();
+                    color = menu;
                 	
                     // Set the background of the button (colorChooser) to match the color chosen
                     // TODO
@@ -383,22 +383,26 @@ public class DrawFrame extends JFrame
                     if (randShapeChoice == 0) // Diamond
                     {
                         // TODO: create a diamond with the random values and add it to the drawpanel.
-                    	drawPanel.add(createShape(randVal1,randVal2);
+                    	Shape shape = new Diamond(randPoint, randVal1, randVal2, randColor, randFill);
+                    	drawPanel.addShape(shape);
                     }
                     else if (randShapeChoice == 1) // Rectangle
                     {
                         // TODO: create a rectangle with the random values and add it to the drawpanel.
-                    	drawPanel.add();
+                    	Shape shape = new Rectangle(randPoint, randVal1, randVal2, randColor, randFill);
+                    	drawPanel.addShape(shape);
                     }
                     else if (randShapeChoice == 2) // Oval
                     {
                         // TODO: create a oval with the random values and add it to the drawpanel.
-                    	drawPanel.add();
+                    	Shape shape = new Oval(randPoint, randVal1, randVal2, randColor, randFill);
+                    	drawPanel.addShape(shape);
                     }
                     else // Triangle
                     {
                         // TODO: create a triangle with the random values and add it to the drawpanel.
-                    	drawPanel.add();
+                    	Shape shape = new RightTriangle(randPoint, randVal1, randVal2, randColor, randFill);
+                    	drawPanel.addShape(shape);
                     }
                     // repaint panel
                     drawPanel.repaint();
@@ -470,10 +474,8 @@ public class DrawFrame extends JFrame
     public boolean isOval()
     {
         // TODO: implement this => check info on the correct graphical component.
-    	if (this.controlPanel.ovalButton.isSelected()) {
-    		return true;
-    	}
-    	return false;
+    	return this.controlPanel.ovalButton.isSelected(); 
+    	
     }
 
     /**
@@ -484,10 +486,8 @@ public class DrawFrame extends JFrame
     public boolean isRectangle()
     {
         // TODO: implement this => check info on the correct graphical component.
-    	if (this.controlPanel.rectangleButton.isSelected()) {
-    		return true;
-    	}
-    	return false;
+    	return this.controlPanel.rectangleButton.isSelected();
+    	
     }
 
     /**
@@ -498,10 +498,8 @@ public class DrawFrame extends JFrame
     public boolean isTriangle()
     {
         // TODO: implement this => check info on the correct graphical component.
-    	if (this.controlPanel.triangleButton.isSelected()) {
-    		return true;
-    	}
-    	return false;
+    	return this.controlPanel.triangleButton.isSelected(); 
+ 
     }
 
     /**
@@ -512,10 +510,8 @@ public class DrawFrame extends JFrame
     public boolean isDiamond()
     {
         // TODO: implement this => check info on the correct graphical component.
-    	if (this.controlPanel.diamondButton.isSelected()) {
-    		return true;
-    	}
-    	return false;
+    	return this.controlPanel.diamondButton.isSelected();
+    	
     }
 
     /**
@@ -526,10 +522,8 @@ public class DrawFrame extends JFrame
     public boolean isFilled()
     {
         // TODO: implement this => check info on the correct graphical component.
-    	if (this.controlPanel.fillBox.isSelected()) {
-    		return true;
-    	}
-    	return false;
+    	return this.controlPanel.fillBox.isSelected();
+    	
     }
 
     /**
