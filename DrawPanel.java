@@ -76,12 +76,12 @@ public class DrawPanel extends JPanel
                 // TODO
                 for (int i = shapeList.size() - 1; i >= 0; --i)
                 {
-                	tempShape = shapeList.get(i);
-                	if (tempShape.contains(mouseClick))
+                	if (shapeList.get(i).contains(mouseClick))
                     {
                         // if the shape contains the point, set the shapeIndex
                         // to be the index in the shapeList
                         shapeIndex = i;
+                        tempShape = shapeList.get(shapeIndex);
 
                         // TODO: find if the shape is filled
                         // TODO: set fillBox to match the status of the shape
@@ -123,8 +123,7 @@ public class DrawPanel extends JPanel
                         // TODO: Check answer, remove shape if yes 
                         // You may need to review JOptionPane documentation
                         if (ret == 0) {
-                        	removeShape(shapeIndex);
-                        	
+                        	removeShape(i);
                         }
                         // TODO: break out of for loop
                         break;
@@ -222,27 +221,27 @@ public class DrawPanel extends JPanel
             if (frame.isOval())
             {
                 // TODO: create and return an Oval
-            	Shape newShape = new Oval(point, width, height, frame.getColor(), frame.controlPanel.ovalButton.isSelected());
+            	Shape newShape = new Oval(point, width, height, frame.getColor(), frame.controlPanel.fillBox.isSelected());
             	return newShape;
             }
             else if (frame.isRectangle())
             {
                 // TODO: create and return a Rectangle
-            	Shape newShape = new Rectangle(point, width, height, frame.getColor(), frame.controlPanel.rectangleButton.isSelected());
+            	Shape newShape = new Rectangle(point, width, height, frame.getColor(), frame.controlPanel.fillBox.isSelected());
             	return newShape;
                 
             }
             else if (frame.isTriangle())
             {
                 // TODO: create and return a Triangle
-            	Shape newShape = new RightTriangle(point, width, height, frame.getColor(), frame.controlPanel.triangleButton.isSelected());
+            	Shape newShape = new RightTriangle(point, width, height, frame.getColor(), frame.controlPanel.fillBox.isSelected());
             	return newShape;
                 
             }
             else if (frame.isDiamond())
             {
                 // TODO: create and return diamond
-            	Shape newShape = new Diamond(point, width, height, frame.getColor(), frame.controlPanel.diamondButton.isSelected());
+            	Shape newShape = new Diamond(point, width, height, frame.getColor(), frame.controlPanel.fillBox.isSelected());
             	return newShape;
                 
             }

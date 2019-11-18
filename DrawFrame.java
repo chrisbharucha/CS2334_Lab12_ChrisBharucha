@@ -523,7 +523,6 @@ public class DrawFrame extends JFrame
     {
         // TODO: implement this => check info on the correct graphical component.
     	return this.controlPanel.fillBox.isSelected();
-    	
     }
 
     /**
