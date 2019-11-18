@@ -383,7 +383,7 @@ public class DrawFrame extends JFrame
                     if (randShapeChoice == 0) // Diamond
                     {
                         // TODO: create a diamond with the random values and add it to the drawpanel.
-                    	drawPanel.add(diamond(randVal1,randVal2));
+                    	drawPanel.add(createShape(randVal1,randVal2);
                     }
                     else if (randShapeChoice == 1) // Rectangle
                     {
@@ -470,7 +470,7 @@ public class DrawFrame extends JFrame
     public boolean isOval()
     {
         // TODO: implement this => check info on the correct graphical component.
-    	if () {
+    	if (this.controlPanel.ovalButton.isSelected()) {
     		return true;
     	}
     	return false;
@@ -484,7 +484,10 @@ public class DrawFrame extends JFrame
     public boolean isRectangle()
     {
         // TODO: implement this => check info on the correct graphical component.
-    	if ()
+    	if (this.controlPanel.rectangleButton.isSelected()) {
+    		return true;
+    	}
+    	return false;
     }
 
     /**
@@ -495,6 +498,10 @@ public class DrawFrame extends JFrame
     public boolean isTriangle()
     {
         // TODO: implement this => check info on the correct graphical component.
+    	if (this.controlPanel.triangleButton.isSelected()) {
+    		return true;
+    	}
+    	return false;
     }
 
     /**
@@ -505,6 +512,10 @@ public class DrawFrame extends JFrame
     public boolean isDiamond()
     {
         // TODO: implement this => check info on the correct graphical component.
+    	if (this.controlPanel.diamondButton.isSelected()) {
+    		return true;
+    	}
+    	return false;
     }
 
     /**
@@ -515,6 +526,10 @@ public class DrawFrame extends JFrame
     public boolean isFilled()
     {
         // TODO: implement this => check info on the correct graphical component.
+    	if (this.controlPanel.fillBox.isSelected()) {
+    		return true;
+    	}
+    	return false;
     }
 
     /**
